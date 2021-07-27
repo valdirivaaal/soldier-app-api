@@ -13,10 +13,11 @@ class CreateLoginTable extends Migration
      */
     public function up()
     {
-        Schema::create('login', function (Blueprint $table) {
+        Schema::create('logins', function (Blueprint $table) {
             $table->id();
             $table->string('username');
             $table->string('password');
+            $table->string('api_token')->nullable();
             $table->timestamps();
         });
     }
