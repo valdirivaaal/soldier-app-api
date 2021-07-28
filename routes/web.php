@@ -23,3 +23,9 @@ $router->group(['prefix'=>'soldier'], function() use ($router){
 
     $router->get('get', 'SoldierController@getData');
 });
+
+$router->group(['prefix'=>'device'], function() use ($router){
+    $router->post('insert', 'DeviceController@insert');
+
+    $router->get('get', 'DeviceController@getData');
+});
