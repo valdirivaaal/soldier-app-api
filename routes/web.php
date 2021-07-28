@@ -17,3 +17,9 @@ $router->get('/', function () use ($router) {
 
 $router->post('/register', 'AuthController@register');
 $router->post('/login', 'AuthController@login');
+
+$router->group(['prefix'=>'soldier'], function() use ($router){
+    $router->post('insert', 'SoldierController@insert');
+
+    $router->get('get', 'SoldierController@getData');
+});
