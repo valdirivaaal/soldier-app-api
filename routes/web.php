@@ -29,3 +29,5 @@ $router->group(['prefix'=>'device'], function() use ($router){
 
     $router->get('get', 'DeviceController@getData');
 });
+
+$router->get('/dashboard', 'DashboardController@getData');
