@@ -18,7 +18,7 @@ class Soldier extends Model implements AuthenticatableContract, AuthorizableCont
      * @var array
      */
     protected $fillable = [
-        'id_soldier', 'nama_soldier'
+        'id_soldier', 'nama_soldier','nama_team'
     ];
 
     // /**
