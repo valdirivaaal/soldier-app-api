@@ -31,3 +31,12 @@ $router->group(['prefix'=>'device'], function() use ($router){
 });
 
 $router->get('/dashboard', 'DashboardController@getData');
+
+$router->group(['prefix'=>'dashboard'], function() use ($router){
+    $router->post('insert', 'DashboardController@insert');
+
+    $router->get('get', 'DashboardController@getData');
+    $router->get('getById/{id_device}', 'DashboardController@getDataById');
+    $router->get('getDataChartById/{id_device}', 'DashboardController@getDataChartById');
+    $router->get('getDataMap', 'DashboardController@getDataMap');
+});
