@@ -19,6 +19,8 @@ class CreateDashboardTable extends Migration
             $table->string('temperature');
             $table->string('pulse');
             $table->string('oxygen');
+            $table->string('bloodPressure');
+            $table->string('respiration');
             $table->string('direction');
             $table->string('latitude');
             $table->string('longitude');

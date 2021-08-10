@@ -18,7 +18,7 @@ class Dashboard extends Model implements AuthenticatableContract, AuthorizableCo
      * @var array
      */
     protected $fillable = [
-        'id_device', 'temperature', 'pulse','oxygen','direction','latitude','longitude'
+        'id_device', 'temperature', 'pulse','oxygen','bloodPressure','respiration','direction','latitude','longitude'
     ];
 
     // /**
