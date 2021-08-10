@@ -12,12 +12,10 @@ class SoldierController extends Controller
     {
         $id_soldier = $request->input('id_soldier');
         $nama_soldier = $request->input('nama_soldier');
-        $nama_team = $request->input('nama_team');
 
         $insert = Soldier::create([
             'id_soldier' => $id_soldier,
-            'nama_soldier' => $nama_soldier,
-            'nama_team' => $nama_team
+            'nama_soldier' => $nama_soldier
         ]);
 
         if ($insert) {
@@ -38,6 +36,8 @@ class SoldierController extends Controller
 
     public function getData(Request $request)
     {
+        $id_soldier = $request->input('id_soldier');
+        $nama_soldier = $request->input('nama_soldier');
 
         $data_soldier = Soldier::all();
         $count_data = count($data_soldier);

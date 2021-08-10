@@ -17,7 +17,6 @@ class CreateSoldiersTable extends Migration
             $table->id();
             $table->string('id_soldier');
             $table->string('nama_soldier');
-            $table->string('nama_team');
             $table->timestamps();
         });
     }
