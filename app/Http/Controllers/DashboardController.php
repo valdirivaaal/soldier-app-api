@@ -60,7 +60,7 @@ class DashboardController extends Controller
         }
     }
 
-    public function getDataById(Request $request,$id_device)
+    public function getDataById(Request $request,$id)
     {
 
         $data_device = DB::table('dashboards')
@@ -69,7 +69,7 @@ class DashboardController extends Controller
                     'dashboards.direction','dashboards.latitude','dashboards.longitude'])
             ->join('devices', 'devices.id_device', '=', 'dashboards.id_device')
             ->join('soldiers', 'devices.id_soldier', '=', 'soldiers.id_soldier')
-            ->where('dashboards.id_device',$id_device)
+            ->where('dashboards.id_device',$id)
             ->limit(1)
             ->orderByDesc('dashboards.id')
             ->get();
@@ -81,7 +81,7 @@ class DashboardController extends Controller
                 'success'=> true,
                 'message'=> "Get Data success",
                 'data'=> $data_device,
-                'id_device'=> $id_device
+                'id_device'=> $id
             ],201);
         }
         else {
@@ -93,7 +93,7 @@ class DashboardController extends Controller
         }
     }
 
-    public function getDataChartById(Request $request,$id_device)
+    public function getDataChartById(Request $request,$id)
     {
 
         $data_device = DB::table('dashboards')
@@ -101,7 +101,7 @@ class DashboardController extends Controller
                     'dashboards.temperature','dashboards.pulse','dashboards.oxygen','dashboards.bloodPressure','dashboards.respiration'])
             ->join('devices', 'devices.id_device', '=', 'dashboards.id_device')
             ->join('soldiers', 'devices.id_soldier', '=', 'soldiers.id_soldier')
-            ->where('dashboards.id_device',$id_device)
+            ->where('dashboards.id_device',$id)
             ->limit(5)
             ->orderByDesc('dashboards.id')
             ->get();
@@ -113,7 +113,7 @@ class DashboardController extends Controller
                 'success'=> true,
                 'message'=> "Get Data success",
                 'data'=> $data_device,
-                'id_device'=> $id_device
+                'id_device'=> $id
             ],201);
         }
         else {

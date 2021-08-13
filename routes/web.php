@@ -18,25 +18,15 @@ $router->get('/', function () use ($router) {
 $router->post('/register', 'AuthController@register');
 $router->post('/login', 'AuthController@login');
 
-$router->group(['prefix'=>'soldier'], function() use ($router){
-    $router->post('insert', 'SoldierController@insert');
+$router->post('/soldier', 'SoldierController@insert');
+$router->get('/soldier', 'SoldierController@getData');
 
-    $router->get('get', 'SoldierController@getData');
-});
+$router->post('/device', 'DeviceController@insert');
+$router->get('/device', 'DeviceController@getData');
 
-$router->group(['prefix'=>'device'], function() use ($router){
-    $router->post('insert', 'DeviceController@insert');
-
-    $router->get('get', 'DeviceController@getData');
-});
-
+$router->post('/dashboard', 'DashboardController@insert');
 $router->get('/dashboard', 'DashboardController@getData');
+$router->get('/dashboard/{id}', 'DashboardController@getDataById');
+$router->get('/dashboard/chart/{id}', 'DashboardController@getDataChartById');
+$router->get('/dashboard/map/{id}', 'DashboardController@getDataMap');
 
-$router->group(['prefix'=>'dashboard'], function() use ($router){
-    $router->post('insert', 'DashboardController@insert');
-
-    $router->get('get', 'DashboardController@getData');
-    $router->get('getById/{id_device}', 'DashboardController@getDataById');
-    $router->get('getDataChartById/{id_device}', 'DashboardController@getDataChartById');
-    $router->get('getDataMap', 'DashboardController@getDataMap');
-});
