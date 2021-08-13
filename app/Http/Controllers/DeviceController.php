@@ -43,8 +43,9 @@ class DeviceController extends Controller
 
         $data_device = DB::table('devices')
             ->join('soldiers', 'devices.id_soldier', '=', 'soldiers.id_soldier')
-            ->select('devices.*', 'soldiers.nama_soldier')
+            ->select('devices.*', 'soldiers.nama_soldier','soldiers.nama_team')
             ->get();
+
 
         $count_data = count($data_device);
 
