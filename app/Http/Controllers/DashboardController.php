@@ -98,7 +98,8 @@ class DashboardController extends Controller
 
         $data_device = DB::table('dashboards')
             ->select(['dashboards.id','dashboards.id_device',
-                    'dashboards.temperature','dashboards.pulse','dashboards.oxygen','dashboards.bloodPressure','dashboards.respiration'])
+                    'dashboards.temperature','dashboards.pulse','dashboards.oxygen','dashboards.bloodPressure','dashboards.respiration',
+                    'dashboards.created_at'])
             ->join('devices', 'devices.id_device', '=', 'dashboards.id_device')
             ->join('soldiers', 'devices.id_soldier', '=', 'soldiers.id_soldier')
             ->where('dashboards.id_device',$id)
@@ -108,11 +109,32 @@ class DashboardController extends Controller
 
         $count_data = count($data_device);
 
+        $deviceData = [];
+        if ($data_device) {
+            foreach($data_device as $row) {
+                /**
+                 * Change date format
+                 */
+                $dateTime = date('H:i:s', strtotime($row->created_at));
+
+                $deviceData[] = [
+                    'id' => $row->id,
+                    'idDevice' => $row->id_device,
+                    'temperature' => $row->temperature,
+                    'pulse' => $row->pulse,
+                    'oxygen' => $row->oxygen,
+                    'bloodPressure' => $row->bloodPressure,
+                    'respiration' => $row->respiration,
+                    'time' => $dateTime
+                ];
+            }
+        }
+
         if ($count_data > 0) {
             return response()->json([
                 'success'=> true,
                 'message'=> "Get Data success",
-                'data'=> $data_device,
+                'data'=> $deviceData,
                 'id_device'=> $id
             ],201);
         }
