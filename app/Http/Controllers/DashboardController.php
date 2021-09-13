@@ -110,24 +110,25 @@ class DashboardController extends Controller
         $count_data = count($data_device);
 
         $deviceData = [];
+
         if ($data_device) {
             foreach($data_device as $row) {
                 /**
                  * Change date format
                  */
-                $dateTime = date('H:i:s', strtotime($row->created_at));
+                $dateTime = date('Y-m-d H:i:s', strtotime($row->created_at));
 
                 $deviceData[] = [
-                    'id' => $row->id,
-                    'idDevice' => $row->id_device,
+                    'y' => $dateTime,
                     'temperature' => $row->temperature,
                     'pulse' => $row->pulse,
                     'oxygen' => $row->oxygen,
                     'bloodPressure' => $row->bloodPressure,
-                    'respiration' => $row->respiration,
-                    'time' => $dateTime
+                    'respiration' => $row->respiration
                 ];
             }
+
+            sort($deviceData);
         }
 
         if ($count_data > 0) {
