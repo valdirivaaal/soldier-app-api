@@ -26,8 +26,7 @@ $router->get('/device', 'DeviceController@getData');
 
 $router->post('/dashboard', 'DashboardController@insert');
 $router->get('/dashboard', 'DashboardController@getData');
-$router->get('/dashboard/{id}', 'DashboardController@getDataById');
-$router->get('/dashboard/chart/{id}', 'DashboardController@getDataChartById');
 $router->get('/dashboard/map', 'DashboardController@getDataMap');
 $router->get('/dashboard/centermap', 'DashboardController@getDataCenterMap');
-
+$router->get('/dashboard/{id}', 'DashboardController@getDataById');
+$router->get('/dashboard/chart/{id}', 'DashboardController@getDataChartById');
