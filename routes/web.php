@@ -29,4 +29,5 @@ $router->get('/dashboard', 'DashboardController@getData');
 $router->get('/dashboard/{id}', 'DashboardController@getDataById');
 $router->get('/dashboard/chart/{id}', 'DashboardController@getDataChartById');
 $router->get('/dashboard/map', 'DashboardController@getDataMap');
+$router->get('/dashboard/centermap', 'DashboardController@getDataCenterMap');
 
