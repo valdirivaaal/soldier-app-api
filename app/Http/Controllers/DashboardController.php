@@ -182,6 +182,41 @@ class DashboardController extends Controller
         }
     }
 
+    public function getDataCenterMap(Request $request)
+    {
+
+        $data_device = DB::table('dashboards')
+            ->select(['dashboards.id','dashboards.id_device','devices.nama_device','soldiers.id_soldier','soldiers.nama_soldier',
+                    'dashboards.direction','dashboards.latitude','dashboards.longitude'])
+            ->join('devices', 'devices.id_device', '=', 'dashboards.id_device')
+            ->join('soldiers', 'devices.id_soldier', '=', 'soldiers.id_soldier')
+            ->whereIn('dashboards.id', function($query){
+                $query->select(DB::raw('MAX(dashboards.id) AS id'))
+                    ->from(with(new Dashboard)->getTable())
+                    ->groupBy('dashboards.id_device')
+                    ->get();
+            })
+            ->limit(1)
+            ->get();
+
+        $count_data = count($data_device);
+
+        if ($count_data > 0) {
+            return response()->json([
+                'success'=> true,
+                'message'=> "Get Data success",
+                'data'=> $data_device
+            ],201);
+        }
+        else {
+            return response()->json([
+                'success'=> false,
+                'message'=> "No Data Dashboard",
+                'data'=> ''
+            ],400);
+        }
+    }
+
 
     public function insert(Request $request)
     {
